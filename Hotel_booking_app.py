@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[3]:
 
 
 import streamlit as st
@@ -13,9 +13,18 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
+# Print current working directory and list of files
+print("Current Working Directory:", os.getcwd())
+print("Files in Current Directory:", os.listdir())
+
 # Load your dataset here
 csv_path = "C:/Users/HP/Documents/Hotel/hotel_bookings.csv"
 df = pd.read_csv(csv_path)
+
+# Upload CSV data through Streamlit
+uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
 
 # Load the model
 model_path = "C:/Users/HP/Documents/Hotel/best_random_forest_model.pkl"
