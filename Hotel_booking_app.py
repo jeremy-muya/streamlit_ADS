@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import streamlit as st
@@ -17,21 +17,31 @@ import os
 print("Current Working Directory:", os.getcwd())
 print("Files in Current Directory:", os.listdir())
 
-# Load the model
-model_path = "C:/Users/HP/Documents/Hotel/best_random_forest_model.pkl"
-loaded_model = joblib.load(model_path)
+# Use relative paths for model and dataset
+model_path = "best_random_forest_model.pkl"
+csv_path = "hotel_bookings.csv"
+
+# Check if the model file exists before loading
+if not os.path.exists(model_path):
+    st.error(f"Model file not found: {model_path}")
+else:
+    # Load the model
+    loaded_model = joblib.load(model_path)
 
 # Streamlit App
 st.title("Hotel Booking Prediction with Random Forest Model")
 
-# Load your dataset here
-csv_path = "C:/Users/HP/Documents/Hotel/hotel_bookings.csv"
-df = pd.read_csv(csv_path)
-
 # Upload CSV data through Streamlit
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 if uploaded_file is not None:
+    # Update the DataFrame only when a file is uploaded
     df = pd.read_csv(uploaded_file)
+else:
+    # Load the dataset if no file is uploaded
+    if not os.path.exists(csv_path):
+        st.error(f"Dataset file not found: {csv_path}")
+    else:
+        df = pd.read_csv(csv_path)
 
 # Display the first few rows of the dataset
 st.subheader("Dataset Preview")
