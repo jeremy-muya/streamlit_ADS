@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[ ]:
 
 
 import streamlit as st
@@ -17,6 +17,13 @@ import os
 print("Current Working Directory:", os.getcwd())
 print("Files in Current Directory:", os.listdir())
 
+# Load the model
+model_path = "C:/Users/HP/Documents/Hotel/best_random_forest_model.pkl"
+loaded_model = joblib.load(model_path)
+
+# Streamlit App
+st.title("Hotel Booking Prediction with Random Forest Model")
+
 # Load your dataset here
 csv_path = "C:/Users/HP/Documents/Hotel/hotel_bookings.csv"
 df = pd.read_csv(csv_path)
@@ -26,19 +33,12 @@ uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
 
-# Load the model
-model_path = "C:/Users/HP/Documents/Hotel/best_random_forest_model.pkl"
-loaded_model = joblib.load(model_path)
-
-# Disable Matplotlib's global figure warning
-st.set_option('deprecation.showPyplotGlobalUse', False)
-
-# Streamlit App
-st.title("Hotel Booking Prediction with Random Forest Model")
-
 # Display the first few rows of the dataset
 st.subheader("Dataset Preview")
 st.write(df.head())
+
+# Disable Matplotlib's global figure warning
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Visualization 1: Bar chart - Comparing stays in week nights, stays in weekend nights and the amount of adults
 st.subheader("Stays and Adults Comparison")
