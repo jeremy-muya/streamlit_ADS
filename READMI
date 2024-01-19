@@ -1,0 +1,46 @@
+Hotel Booking Prediction App
+This Streamlit web application uses a Random Forest model to predict hotel booking cancellations based on user input. Additionally, the application provides visualizations and insights into the dataset.
+
+How to Use
+1. Upload Your Dataset
+You can upload your own dataset in CSV format using the "Upload a CSV file" button. If you don't have a file to upload, the application will use the default dataset ("hotel_bookings.csv").
+
+2. Explore the Dataset
+Once the dataset is loaded, the application displays a preview of the dataset's first few rows.
+
+3. Visualizations
+- Stays and Adults Comparison
+This bar chart compares stays in weeknights, stays in weekend nights, and the number of adults.
+- Arrival Date and Guest Comparison
+This box plot visualizes the comparison of arrival date month, adults, and whether the guest is a repeat guest.
+- Arrival Month and Adults Comparison
+This bar chart shows the comparison of arrival month and adults.
+
+4. User Input for Prediction
+On the sidebar, you can enter specific parameters for prediction:
+- Stays in Week Nights: Number of stays in week nights.
+- Stays in Weekend Nights: Number of stays in weekend nights.
+- Adults: Number of adults.
+- Arrival Date Month: Month of arrival.
+After entering the parameters for each feature, click the "Done" button to proceed.
+
+5. Model Prediction
+The application will display the prediction result based on the provided user input.
+
+6. Training the Model
+The application is backed by a Random Forest model trained on the provided dataset.
+The training code preprocesses the data, handles missing values, encodes categorical variables, splits the data, and trains the Random Forest model.
+The best model is saved and can be loaded for making predictions.
+
+Files
+Hotel_training.py: Python script containing the training code.
+best_random_forest_model.pkl: Saved Random Forest model.
+hotel_bookings.csv: Default dataset used for training and predictions.
+
+Requirements
+Python 3.x
+Libraries: pandas, numpy, joblib, scikit-learn, matplotlib, seaborn, streamlit
+
+How to Run
+Ensure you have the required libraries installed. You can install them using the command: pip install -r requirements.txt.
+Run the Streamlit app using the command: streamlit run <path_to_streamlit_script>. In this case, replace <path_to_streamlit_script> with the path to your Streamlit script.
